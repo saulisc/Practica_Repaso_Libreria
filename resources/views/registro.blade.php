@@ -6,8 +6,8 @@
 {!!
     "<script>
     Swal.fire(
-        'All right!',
-        'Los datos pasaron al controlador',
+        'Todo correcto!',
+        'Todo correcto: Libro guardado',
         'Success');
     </script>"
   !!}

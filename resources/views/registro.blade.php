@@ -1,8 +1,31 @@
 @extends('template')
 
 @section('contenido')
-    <div class="container">
+
+@if (session()->has('confirmacion'))
+{!!
+    "<script>
+    Swal.fire(
+        'All right!',
+        'Los datos pasaron al controlador',
+        'Success');
+    </script>"
+  !!}
+@endif 
+    <div class="container  col-md-6">
         <h1 class="display-4 text-center mt-5 mb-5">Registro del libro</h1>
+        @if ($errors -> any())
+            @foreach ($errors->all() as $error)
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Formulario incompleto</strong> 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endforeach
+            
+        @endif
+
+
+
         <div class="card">
             <div class="card-body">
                 <h5 class="card-header text-center">Libro</h5>

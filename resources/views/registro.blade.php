@@ -6,11 +6,11 @@
 @if (session('success'))
 <script>
     Swal.fire({
-        title: 'Libro guardado ',
+        title: 'Todo correcto: Libro " ',
         imageUrl: 'https://unsplash.it/400/200',
         imageWidth: 400,
         imageHeight: 200,
-        text: '{{ session('success')['titulo'] }} guardado con exito',
+        text: '{{ session('success')['titulo'] }} " guardado con exito',
         icon: 'success',
         confirmButtonText: 'Aceptar'
     })

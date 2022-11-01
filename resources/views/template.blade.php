@@ -12,32 +12,37 @@
 
 <body>
     <!--Barra navegación-->
-    <nav class="navbar navbar-expand-lg bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Biblioteca</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('registro') }}">Registro</a>
-                    </li>
-                </ul>
-            </div>
+          <a class="navbar-brand" href="home">Biblioteca</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="home">home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('registro') }}">Registros</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
         </div>
-    </nav>
+      </nav>
 
     <!-- CONTENIDO DE LA PAGINA -->
     @yield('contenido')
 
 
-    <div class="card-footer text-muted">
-        Biblioteca's good | All rights reserved | Date :c
+    <div class="card-footer text-bg-primary mb-3">
+        Biblioteca's good | All rights reserved | 
+        ©Libreria Atena {{$fechaActual_2 = date('D - F - Y')}}
 
     </div>
     <!-- JavaScript Bundle with Popper -->

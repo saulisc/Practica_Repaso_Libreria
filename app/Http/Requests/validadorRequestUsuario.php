@@ -1,10 +1,10 @@
 <?php
-//for books
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class validadorRequest extends FormRequest
+class validadorRequestUsuario extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,9 @@ class validadorRequest extends FormRequest
     public function rules()
     {
         return [
-            'txtISBN' => 'required|min:13|numeric',
-            'txtTitulo' => 'required',
-            'txtAutor' => 'required',
-            'txtPaginas' => 'required|numeric',
-            'txtEditorial' => 'required',
-            'txtEmail' => 'required|email',
-           
+            'txtCliente' => 'required|min:4',
+            'txtINE' =>  'required|numeric|min:10',
+            'txtEmailCliente' => 'required|email'
         ];
     }
 }

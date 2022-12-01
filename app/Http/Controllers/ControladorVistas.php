@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\validadorRequest;
+use App\Http\Requests\validadorRequestUsuario;
 
 
 class ControladorVistas extends Controller
@@ -15,6 +16,18 @@ class ControladorVistas extends Controller
 
         //return view('registro', compact('titulo'));
     }
+    
+    public function procesarFormularioCliente(validadorRequestUsuario $requestCliente){
+        $cliente = $requestCliente->input('txtCliente');
+        //el success cuenta mucho a la hora de regresar ese return 
+        return redirect() -> route('clientes') -> with('success', compact('cliente'));
+
+        //return view('registro', compact('titulo'));
+    }
+    public function showClientes(){
+        return view('clientes');
+    }
+
     public function showRegistro(){
         return view('registro');
     }

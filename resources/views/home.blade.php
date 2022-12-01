@@ -3,6 +3,7 @@
 @section('contenido')
 
 <div class="container sm">
+  <br><br>
     <h1>NOTICIAS</h1>
   <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
     <div class="carousel-indicators">

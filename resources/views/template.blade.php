@@ -30,7 +30,11 @@
               <li class="nav-item">
                 <a class="nav-link {{ request() ->routeIs('libro.create')?'text-danger fw-bold text-decoration-underline':''}}" href="{{route('libro.create')}}">Registro libro</a>
               </li>
-             
+
+              <li class="nav-item">
+                {{-- <a class="nav-link active" aria-current="page" href="{{route('clientes.createCliente')}}">Clientes</a> --}}
+                <a class="nav-link {{ request() ->routeIs('clientes.createCliente')?'text-success  fw-bold text-decoration-underline':''}}" href="{{route('clientes.createCliente')}}">Registro Clientes</a>
+              </li>
             </ul>
             <form class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

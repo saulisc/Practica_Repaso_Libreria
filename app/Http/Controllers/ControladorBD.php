@@ -4,46 +4,122 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\validadorRequest;
+use App\Http\Requests\validadorRequestUsuario;
 use DB;
 use Carbon\Carbon;
-//use App\Http\Requests\validadorRequestUsuario;
 
 class ControladorBD extends Controller
 {
+    //for clientes
+    public function deleteCliente($id)
+    {
+        $consultaIdCliente = DB::table('tb_users')
+            ->where('idUser', $id)
+            ->first();
+        return view('deleteCliente', compact('consultaIdCliente'));
+    }
+    //for books
+    public function destroyCliente($id)
+    {
+        DB::table('tb_users')
+            ->where('idUser', $id)
+            ->delete();
+
+        return redirect('clientes')->with('Eliminado', 'abc');
+    }
+
+    //for clientes
+    public function editCliente($id)
+    {
+        $consultaIdCliente = DB::table('tb_users')
+            ->where('idUser', $id)
+            ->first();
+        return view('editCliente', compact('consultaIdCliente'));
+    }
+
+    //for clientes
+    public function indexClientes()
+    {
+        $resultCliente = DB::table('tb_users')->get();
+        return view('showClientes', compact('resultCliente'));
+    }
+
+    //for clientes
+    public function updateCliente(validadorRequestUsuario $request, $id)
+    {
+        DB::table('tb_users')
+            ->where('idUser', $id)
+            ->update([
+                'cliente' => $request->input('txtCliente'),
+                'ine' => $request->input('txtINE'),
+                'email_cliente' => $request->input('txtEmailCliente'),
+                'updated_at' => Carbon::now(),
+            ]);
+        return redirect('clientes')->with('Actualizado', 'abc');
+    }
+
+    //for clientes
+    public function createCliente()
+    {
+        return view('clientes');
+    }
+
+    ////for clientes
+    public function storeCliente(validadorRequestUsuario $request)
+    {
+        $cliente = $request->input('txtCliente');
+        DB::table('tb_users')->insert([
+            'cliente' => $request->input('txtCliente'),
+            'ine' => $request->input('txtINE'),
+            'email_cliente' => $request->input('txtEmailCliente'),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        return redirect('clientes/createCliente')->with('guardado', compact('cliente'));
+    }
+
     //for books
     public function delete($id)
     {
-        $consultaIdBook = DB::table('tb_libros') -> where('idLibro', $id) -> first();
+        $consultaIdBook = DB::table('tb_libros')
+            ->where('idLibro', $id)
+            ->first();
         return view('deleteBook', compact('consultaIdBook'));
     }
     //for books
     public function destroy($id)
     {
-        DB::table('tb_libros') -> where('idLibro', $id) -> delete();
-        
+        DB::table('tb_libros')
+            ->where('idLibro', $id)
+            ->delete();
 
-        return redirect('libro') -> with('Eliminado', "tu libro se ha eliminado");
+        return redirect('libro')->with('Eliminado', 'tu libro se ha eliminado');
     }
 
     //for books
     public function edit($id)
     {
-        $consultaIdBook = DB::table('tb_libros') -> where('idLibro', $id) -> first();
+        $consultaIdBook = DB::table('tb_libros')
+            ->where('idLibro', $id)
+            ->first();
         return view('editBook', compact('consultaIdBook'));
     }
 
     //for books
-    public function update(validadorRequest $request, $id){
-        DB::table('tb_libros') -> where('idLibro', $id) -> update([
-            "isbn" => $request->input('txtISBN'),
-            "titulo" => $request->input('txtTitulo'),
-            "autor" => $request->input('txtAutor'),
-            "paginas" => $request->input('txtPaginas'),
-            "editorial" => $request->input('txtEditorial'),
-            "email" => $request->input('txtEmail'),
-            "updated_at" => Carbon::now(),
-        ]);
-        return redirect('libro') -> with('Actualizado', "abc");
+    public function update(validadorRequest $request, $id)
+    {
+        DB::table('tb_libros')
+            ->where('idLibro', $id)
+            ->update([
+                'isbn' => $request->input('txtISBN'),
+                'titulo' => $request->input('txtTitulo'),
+                'autor' => $request->input('txtAutor'),
+                'paginas' => $request->input('txtPaginas'),
+                'editorial' => $request->input('txtEditorial'),
+                'email' => $request->input('txtEmail'),
+                'updated_at' => Carbon::now(),
+            ]);
+        return redirect('libro')->with('Actualizado', 'abc');
     }
 
     //for books
@@ -79,6 +155,11 @@ class ControladorBD extends Controller
     public function showHome()
     {
         return view('home');
+    }
+
+    public function showCliente()
+    {
+        return view('clientes');
     }
 
     // /**
